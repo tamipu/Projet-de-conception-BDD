@@ -14,8 +14,7 @@ JOIN Evaluation E ON C.ID = E.Cours_ID
 GROUP BY C.ID, C.Intitule
 ORDER BY NoteMoyenne DESC;
 
-
--- 2a. Afficher les utilisateurs qui ont terminé toutes les parties du cours donné
+-- 2a. Afficher les utilisateurs qui ont terminé toutes les parties du cours donné (Cours_ID = 6)
 SELECT DISTINCT U.ID, U.Nom, U.Prenom
 FROM Utilisateur U
 JOIN Inscription_Cours IC ON U.ID = IC.Utilisateur_ID
@@ -25,7 +24,7 @@ JOIN Chapitre Ch ON Pa.Chapitre_ID = Ch.ID
 WHERE Ch.Cours_ID = 6 AND P.Termine = TRUE
 GROUP BY U.ID, U.Nom, U.Prenom;
 
--- 2b. Afficher les utilisateurs qui ont tenté au moins une fois tous les examens du cours donné
+-- 2b. Afficher les utilisateurs qui ont tenté au moins une fois tous les examens du cours donné (Cours_ID = 6)
 SELECT U.ID, U.Nom, U.Prenom
 FROM Utilisateur U
 JOIN Inscription_Cours IC ON U.ID = IC.Utilisateur_ID
@@ -36,7 +35,7 @@ JOIN Chapitre Ch ON Pa.Chapitre_ID = Ch.ID
 WHERE Ch.Cours_ID = 6
 GROUP BY U.ID, U.Nom, U.Prenom;
 
--- 2c. Afficher les utilisateurs qui ont réussi tous les examens du cours donné
+-- 2c. Afficher les utilisateurs qui ont réussi tous les examens du cours donné (Cours_ID = 1)
 SELECT U.ID, U.Nom, U.Prenom
 FROM Utilisateur U
 JOIN Inscription_Cours IC ON U.ID = IC.Utilisateur_ID
@@ -46,7 +45,6 @@ JOIN Partie Pa ON E.Partie_ID = Pa.ID
 JOIN Chapitre Ch ON Pa.Chapitre_ID = Ch.ID
 WHERE Ch.Cours_ID = 1 AND T.Score >= E.ScoreMin
 GROUP BY U.ID, U.Nom, U.Prenom;
-
 
 --3. Afficher la liste des utilisateurs par ordre de dépenses (les utilisateurs qui ont dépensé le plus d’argent en achetant des cours payants. On doit voir le montant dépensé dans le résultat de la requête)
 -- On calcule la dépense totale de chaque utilisateur sur les cours payants et on les trie par dépense décroissante.
@@ -63,7 +61,7 @@ WHERE IC.Payant = TRUE
 GROUP BY U.ID, U.Nom, U.Prenom
 ORDER BY TotalDepense DESC;
 
---4. Afficher les parties d’un cours, ordonnées par chapitres et ordre dans les chapitres
+--4. Afficher les parties d’un cours (Cours_ID = 1), ordonnées par chapitres et ordre dans les chapitres
 -- Liste toutes les parties d'un cours, classées par ordre des chapitres et des parties au sein des chapitres.
 SELECT 
     Ch.Cours_ID,
@@ -101,8 +99,7 @@ JOIN Utilisateur U ON A.Utilisateur_ID = U.ID
 
 ORDER BY ID_Cours, Role;
 
-
---6. Pour un utilisateur donné, affiché les cours auxquels il est inscrit, ainsi que son pourcentage de progression de chaque cours (nombre de parties marquées comme terminées par rapport au nombre de parties totales du cours)
+--6. Pour un utilisateur donné (Utilisateur_ID = 2), affiché les cours auxquels il est inscrit, ainsi que son pourcentage de progression de chaque cours (nombre de parties marquées comme terminées par rapport au nombre de parties totales du cours)
 SELECT 
     IC.Utilisateur_ID AS ID_Utilisateur,
     C.ID AS ID_Cours,
