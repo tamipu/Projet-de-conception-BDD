@@ -2,13 +2,6 @@
 -- Last modification date: 2024-03-20 14:21:03.617
 
 -- Tables
--- Table: Assignation
-CREATE TABLE Assignation (
-    Cours_ID int NOT NULL,
-    Utilisateur_ID int NOT NULL,
-    CONSTRAINT Assignation_pk PRIMARY KEY (Cours_ID, Utilisateur_ID)
-);
-
 -- Table: Chapitre
 CREATE TABLE Chapitre (
     ID int NOT NULL GENERATED ALWAYS AS IDENTITY,
@@ -29,23 +22,6 @@ CREATE TABLE Cours (
     DateDebut date NULL,
     DateFin date NULL,
     CONSTRAINT Cours_pk PRIMARY KEY (ID)
-);
-
--- Table: Creation
-CREATE TABLE Creation (
-    Cours_ID int NOT NULL,
-    Utilisateur_ID int NOT NULL,
-    Date date NOT NULL,
-    CONSTRAINT Creation_pk PRIMARY KEY (Cours_ID, Utilisateur_ID)
-);
-
--- Table: Evaluation
-CREATE TABLE Evaluation (
-    Utilisateur_ID int NOT NULL,
-    Cours_ID int NOT NULL,
-    Note decimal(10,1) NULL,
-    Commentaire Text NULL,
-    CONSTRAINT Evaluation_pk PRIMARY KEY (Utilisateur_ID, Cours_ID)
 );
 
 -- Table: Examen
@@ -102,6 +78,30 @@ CREATE TABLE Role_Utilisateur (
     Utilisateur_ID int NOT NULL,
     Roles_ID int NOT NULL,
     CONSTRAINT Role_Utilisateur_pk PRIMARY KEY (Utilisateur_ID, Roles_ID)
+);
+
+-- Table: Assignation
+CREATE TABLE Assignation (
+    Cours_ID int NOT NULL,
+    Utilisateur_ID int NOT NULL,
+    CONSTRAINT Assignation_pk PRIMARY KEY (Cours_ID, Utilisateur_ID)
+);
+
+-- Table: Creation
+CREATE TABLE Creation (
+    Cours_ID int NOT NULL,
+    Utilisateur_ID int NOT NULL,
+    Date date NOT NULL,
+    CONSTRAINT Creation_pk PRIMARY KEY (Cours_ID, Utilisateur_ID)
+);
+
+-- Table: Evaluation
+CREATE TABLE Evaluation (
+    Utilisateur_ID int NOT NULL,
+    Cours_ID int NOT NULL,
+    Note decimal(10,1) NULL,
+    Commentaire Text NULL,
+    CONSTRAINT Evaluation_pk PRIMARY KEY (Utilisateur_ID, Cours_ID)
 );
 
 -- Table: Session_Direct
