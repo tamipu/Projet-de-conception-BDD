@@ -186,7 +186,7 @@ INSERT INTO public.progression (termine,"date",partie_id,inscription_cours_id) V
 	 (true,'2023-04-01',2,1),
 	 (true,'2023-03-10',5,12),
 	 (false,'2023-09-06',18,3);
-INSERT INTO public."role" (libelle) VALUES
+INSERT INTO public.role (libelle) VALUES
 	 ('Admin'),
 	 ('etudiant'),
 	 ('formateur');
